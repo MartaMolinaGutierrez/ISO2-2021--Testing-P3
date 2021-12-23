@@ -1,88 +1,42 @@
 package org.exercise3;
 
 public class Certificate {
+	FunctionalSuitability fSuitability;
+	Maintainability maintainability;
 	
-int measureCompleteness, measureCorrectness, measureAppropriateness;
-	
-	public Certificate(int measureCompleteness, int measureCorrectness, int measureAppropriateness) {
-		this.measureCompleteness = measureCompleteness;
-		this.measureCorrectness = measureCorrectness;
-		this.measureAppropriateness = measureAppropriateness;
+	public Certificate(FunctionalSuitability fSuitability, Maintainability maintainability) {
+		this.fSuitability = fSuitability;
+		this.maintainability = maintainability;
 	}
 	
-	int functionalSuitability() {
+	int qualityLevel() {
+		int quality = -1;
+		int i = fSuitability.functionalSuitability();
+		int j = maintainability.maintainability();
+		
 		try {
-			int fCompleteness = functionalCompleteness(this.measureCompleteness);
-			int fCorrectness = functionalCorrectness(this.measureCorrectness);
-			int fAppropriateness = functionalAppropriateness(this.measureAppropriateness);
-			
-			if(fCompleteness <= fCorrectness && fCompleteness <= fAppropriateness) {
-				return fCompleteness;
-			} else if(fCorrectness <= fAppropriateness) {
-				return fCorrectness;
-			} else {
-				return fAppropriateness;
-			}
-			
-		} catch(OutOfRangeException e) {
+			quality = getQuality(i, j);
+		} catch(ArrayIndexOutOfBoundsException e) {
 			System.out.println("The measurements are incorrect, please correct them.");
 			System.exit(0);
 		}
 		
-		return 0;
+		return quality;
 	}
 	
-	static int functionalCompleteness(int measurement) throws OutOfRangeException {
-		if(measurement < 0) {
-			throw new OutOfRangeException();
-		} else if(measurement < 10) {
-			return 0;
-		} else if(measurement < 35) {
-			return 1;
-		} else if(measurement < 70) {
-			return 2;
-		} else if(measurement < 90) {
-			return 3;
-		} else if(measurement <= 100) {
-			return 4;
-		} else {
-			throw new OutOfRangeException();
-		}
+	int getQuality(int i, int j) throws ArrayIndexOutOfBoundsException{
+		int[][] qualityMatrix = {
+				{1, 1, 1, 1, 1},
+				{1, 2, 2, 2, 2},
+				{2, 2, 3, 3, 3},
+				{3, 3, 3, 3, 4},
+				{3, 3, 4, 4, 5}
+		};
+		
+		return qualityMatrix[i - 1][j - 1];
 	}
 	
-	static int functionalCorrectness(int measurement) throws OutOfRangeException {
-		if(measurement < 0) {
-			throw new OutOfRangeException();
-		} else if(measurement < 10) {
-			return 0;
-		} else if(measurement < 50) {
-			return 1;
-		} else if(measurement < 70) {
-			return 2;
-		} else if(measurement < 90) {
-			return 3;
-		} else if(measurement <= 100) {
-			return 5;
-		} else {
-			throw new OutOfRangeException();
-		}
-	}
-	
-	static int functionalAppropriateness(int measurement) throws OutOfRangeException {
-		if(measurement < 0) {
-			throw new OutOfRangeException();
-		} else if(measurement < 10) {
-			return 0;
-		} else if(measurement < 50) {
-			return 2;
-		} else if(measurement < 70) {
-			return 3;
-		} else if(measurement < 90) {
-			return 4;
-		} else if(measurement <= 100) {
-			return 5;
-		} else {
-			throw new OutOfRangeException();
-		}
+	boolean isCertifiable(int quality) {
+		return (quality >= 3);
 	}
 }
