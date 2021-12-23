@@ -5,15 +5,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.exercise3.*;
 
-/**
- * Unit test for simple App.
- */
-
-
-/**
- * We decided to include test cases with and without nulls, to observe the difference in the results when testing.
- */
-
 public class AppTest 
 {	
 	
