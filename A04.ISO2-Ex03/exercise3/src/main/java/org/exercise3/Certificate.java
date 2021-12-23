@@ -16,9 +16,9 @@ int measureCompleteness, measureCorrectness, measureAppropriateness;
 			int fCorrectness = functionalCorrectness(this.measureCorrectness);
 			int fAppropriateness = functionalAppropriateness(this.measureAppropriateness);
 			
-			if(fCompleteness < fCorrectness && fCompleteness < fAppropriateness) {
+			if(fCompleteness <= fCorrectness && fCompleteness <= fAppropriateness) {
 				return fCompleteness;
-			} else if(fCorrectness < fAppropriateness) {
+			} else if(fCorrectness <= fAppropriateness) {
 				return fCorrectness;
 			} else {
 				return fAppropriateness;
@@ -32,7 +32,7 @@ int measureCompleteness, measureCorrectness, measureAppropriateness;
 		return 0;
 	}
 	
-	int functionalCompleteness(int measurement) throws OutOfRangeException {
+	static int functionalCompleteness(int measurement) throws OutOfRangeException {
 		if(measurement < 0) {
 			throw new OutOfRangeException();
 		} else if(measurement < 10) {
@@ -50,7 +50,7 @@ int measureCompleteness, measureCorrectness, measureAppropriateness;
 		}
 	}
 	
-	int functionalCorrectness(int measurement) throws OutOfRangeException {
+	static int functionalCorrectness(int measurement) throws OutOfRangeException {
 		if(measurement < 0) {
 			throw new OutOfRangeException();
 		} else if(measurement < 10) {
@@ -68,7 +68,7 @@ int measureCompleteness, measureCorrectness, measureAppropriateness;
 		}
 	}
 	
-	int functionalAppropriateness(int measurement) throws OutOfRangeException {
+	static int functionalAppropriateness(int measurement) throws OutOfRangeException {
 		if(measurement < 0) {
 			throw new OutOfRangeException();
 		} else if(measurement < 10) {
