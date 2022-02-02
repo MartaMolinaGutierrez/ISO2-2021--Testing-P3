@@ -11,6 +11,14 @@ public class Maintainability {
 		this.mTested = mTested;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "Maintainability [mModularity=" + mModularity + ", mReusability=" + mReusability + ", mAnalyizability="
+				+ mAnalyizability + ", mModified=" + mModified + ", mTested=" + mTested + "]";
+	}
+
+
 	int maintainability() {
 		try {
 			int modularity = modularity(this.mModularity);

@@ -9,6 +9,14 @@ public class FunctionalSuitability {
 		this.measureAppropriateness = measureAppropriateness;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "FunctionalSuitability [measureCompleteness=" + measureCompleteness + ", measureCorrectness="
+				+ measureCorrectness + ", measureAppropriateness=" + measureAppropriateness + "]";
+	}
+
+
 	int functionalSuitability() {
 		try {
 			int fCompleteness = functionalCompleteness(this.measureCompleteness);

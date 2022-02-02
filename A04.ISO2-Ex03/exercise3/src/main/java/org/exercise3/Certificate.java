@@ -9,6 +9,13 @@ public class Certificate {
 		this.maintainability = maintainability;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "Certificate [fSuitability=" + fSuitability + ", maintainability=" + maintainability + "]";
+	}
+
+
 	int qualityLevel() {
 		int quality = -1;
 		int i = fSuitability.functionalSuitability();
